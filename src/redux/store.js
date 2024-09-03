@@ -1,7 +1,7 @@
 import { createStore } from 'redux';
-import rootReducer from './reducers'; // Adjust the import path to your rootReducer
+import rootReducer from './reducers'; 
 
-// Create the Redux store
+
 const store = createStore(
   rootReducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()

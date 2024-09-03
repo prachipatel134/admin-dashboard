@@ -1,29 +1,48 @@
-import React, { useEffect, useState } from 'react';
-import { Table, Card } from 'antd';
-import { fetchTweetVolume } from '../services/api'; // Import your API functions
+import React from 'react';
+import { UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons';
+import { Layout, Menu, theme } from 'antd';
+import Sidebar from './Sidebar';
+import Homepage from '../Pages/Homepage';
 
-const Dashboard = () => {
-  const [tweetVolume, setTweetVolume] = useState([]);
+const { Header, Content, Footer, Sider } = Layout;
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const volumeData = await fetchTweetVolume();
-        setTweetVolume(volumeData); // Update state with fetched data
-      } catch (error) {
-        console.error('Error fetching Twitter data', error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
+const App = () => {
+  const {
+    token: { colorBgContainer, borderRadiusLG },
+  } = theme.useToken();
   return (
-    <div>
-    <h1>    Hey</h1>
-      {/* Add more cards for other data points */}
-    </div>
+    <Layout>
+<Sidebar />
+      <Layout>
+        <Header
+          style={{
+            paddingTop:8,
+            paddingBottom:4,
+            paddingInline:24,
+            height:75,
+            
+            background: colorBgContainer,
+          }}
+        >
+          <h2>Welcome to upwork Dashboard</h2>
+          </Header>
+        <Content
+          
+        >
+          <div
+            style={{
+              padding: 24,
+              minHeight: 360,
+              backgroundColor: '#ecf0f4',
+              borderRadius: borderRadiusLG,
+            }}
+          >
+            <Homepage/>
+          </div>
+        </Content>
+      
+      </Layout>
+    </Layout>
   );
 };
-
-export default Dashboard;
+export default App;
